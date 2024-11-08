@@ -34,9 +34,9 @@ function delay(ms) {
  * Decreases the spaceship's temperature and updates the display.
  * @return {Promise<void>}
  */
-async function temperatureDrop() {
+function temperatureDrop() {
     spaceship.temperature -= 0.001;
-    updateLog(`Temperature: ${spaceship.temperature.toFixed(3)} ${spaceship.units}`);
+    updateLog(`Temperature: ${spaceship.temperature.toFixed(1)} ${spaceship.units}`);
 }
 
 /**
@@ -47,7 +47,7 @@ async function main() {
     try {
         while (true) {
             await delay(1);
-            await temperatureDrop();
+            temperatureDrop();
         }
     } catch (error) {
         console.error("An error occurred:", error);
@@ -59,7 +59,7 @@ async function main() {
 rl.input.on('keypress', (ch, key) => {
     if (key.name === 'space' && key.sequence === ' ') {
         spaceship.temperature += 0.1;
-        updateLog(`Temperature: ${spaceship.temperature.toFixed(3)} ${spaceship.units}`);
+        updateLog(`Temperature: ${spaceship.temperature.toFixed(1)} ${spaceship.units}`);
     }
     // Exit on Ctrl+C
     if (key.ctrl && key.name === 'c') {
